@@ -4,6 +4,29 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
 
+  state = {
+    content: <Profile />
+  }
+
+  handlePage = (pageName) => {
+    if (pageName === "Profile") {
+      this.setState({
+        content: <Profile />
+      })
+    } else if (pageName === "Photos") {
+      this.setState({
+        content: <Photos />
+      })
+    } else if (pageName === "Cocktails") {
+      this.setState({
+        content: <Cocktails />
+      })
+    } else if (pageName === "Pokemon") {
+      this.setState({
+        content: <Pokemon />
+      })
+    }
+  }
 
   render() {
 
@@ -13,11 +36,11 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
+    const detailsToDisplay = <div>{this.state.content}</div>
 
     return (
       <div>
-        <MenuBar />
+        <MenuBar handlePage={this.handlePage}/>
         {detailsToDisplay}
       </div>
     )
