@@ -3,7 +3,42 @@ import MenuBar from '../components/MenuBar.js'
 import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
+  state = {
+    selected: 'profile'
+  }
 
+  selectProfile = () => {
+    this.setState({
+      selected: 'profile'
+    })
+  }
+  selectPhoto = () => {
+    this.setState({
+      selected: 'photo'
+    })
+  }
+  selectCocktail = () => {
+    this.setState({
+      selected: 'cocktail'
+    })
+  }
+  selectPokemon = () => {
+    this.setState({
+      selected: 'pokemon'
+    })
+  }
+
+  detailsToDisplay = () => {
+    if (this.state.selected === 'profile') {
+      return <Profile />
+    } else if (this.state.selected === 'photo') {
+      return <Photos />
+    } else if (this.state.selected === 'cocktail') {
+      return <Cocktails />
+    } else if (this.state.selected === 'pokemon') {
+      return <Pokemon />
+    }
+  }
 
   render() {
 
@@ -13,12 +48,11 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
 
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
+        <MenuBar profile={this.selectProfile} photo={this.selectPhoto} cocktail={this.selectCocktail} pokemon={this.selectPokemon}/>
+        {this.detailsToDisplay()}
       </div>
     )
   }
